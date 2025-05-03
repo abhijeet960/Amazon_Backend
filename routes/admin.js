@@ -35,7 +35,7 @@ adminRouter.get("/admin/get-products", admin, async (req, res) => {
   }
 });
 
-adminRouter.get("/admin/get-products", async (req, res) => {
+adminRouter.get("/home/get-products", async (req, res) => {
   try {
     const products = await Product.find({});
     res.json(products);
