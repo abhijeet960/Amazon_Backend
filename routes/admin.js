@@ -18,6 +18,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
       category,
     });
     product = await product.save();
+    console.log(console.error());
     res.json(product);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -26,6 +27,15 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
 
 // Get all your products
 adminRouter.get("/admin/get-products", admin, async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.json(products);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+adminRouter.get("/admin/get-products", async (req, res) => {
   try {
     const products = await Product.find({});
     res.json(products);
@@ -53,6 +63,7 @@ adminRouter.get("/admin/get-orders", admin, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
 
 adminRouter.post("/admin/change-order-status", admin, async (req, res) => {
   try {
